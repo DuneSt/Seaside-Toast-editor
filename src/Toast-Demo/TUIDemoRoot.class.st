@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'currentDemo'
 	],
-	#category : #'Toast-UI-Demo'
+	#category : #'Toast-Demo'
 }
 
 { #category : #versions }
@@ -33,7 +33,7 @@ TUIDemoRoot >> currentDemo: anObject [
 { #category : #updating }
 TUIDemoRoot >> initialize [
 	super initialize.
-	self currentDemo: MEditorSimpleDemo new
+	self currentDemo: TUISimpleDemo new
 ]
 
 { #category : #updating }
@@ -42,7 +42,7 @@ TUIDemoRoot >> renderContentOn: html [
 		class: 'tui-demo';
 		with: [ self renderDemoListOn: html.
 			(html tag: 'main')
-				with: [ html div: 'Note: We''re not affiliated with Medium.com'.
+				with: [ html div: 'Note: We''re not affiliated with https://ui.toast.com/'.
 					html div
 						class: 'meditor-demo-page';
 						with: [ html render: self currentDemo ] ] ]
@@ -52,7 +52,7 @@ TUIDemoRoot >> renderContentOn: html [
 TUIDemoRoot >> renderDemoListOn: html [
 	html div
 		class: 'tui-demo-list';
-		with: [ html unorderedList: [ MEditorAbstractDemo allSubclasses do: [ :aDemoClass | self renderDemosListItemFor: aDemoClass on: html ] ] ]
+		with: [ html unorderedList: [ TUIAbstractDemo allSubclasses do: [ :aDemoClass | self renderDemosListItemFor: aDemoClass on: html ] ] ]
 ]
 
 { #category : #updating }

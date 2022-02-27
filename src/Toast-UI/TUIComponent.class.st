@@ -6,7 +6,8 @@ Class {
 		'text',
 		'waitingMessage',
 		'extensions',
-		'buttons'
+		'buttons',
+		'widgetRules'
 	],
 	#category : #'Toast-UI'
 }
@@ -33,13 +34,24 @@ TUIComponent >> extensions: anObject [
 
 { #category : #rendering }
 TUIComponent >> renderContentOn: html [
-	| id |
+	| id el |
 	id := html nextId.
-	html div
+	el := html div
 		id: id;
 		class: 'tui-editable';
 		attributeAt: #'data-loaded' put: #false;
-		with: self text
+		attributeAt: #'data-save-callback'
+			put:
+			(html jQuery ajax
+				type: 'POST';
+				callback: [ :aString | self saveCallback cull: aString ]
+					value: (JSStream on: 'TuiEditor.getInstance("#' , id , '").getValue()');
+				onComplete: 'TuiEditor.saveCompleted()';
+				onError: 'TuiEditor.saveFailed()');
+		yourself.
+	self widgetRules
+		ifNotNil: [ el attributeAt: #'data-widget-rules' put: self widgetRules ].
+	el with: self text
 ]
 
 { #category : #accessing }
@@ -70,4 +82,14 @@ TUIComponent >> waitingMessage [
 { #category : #accessing }
 TUIComponent >> waitingMessage: anObject [
 	waitingMessage := anObject
+]
+
+{ #category : #accessing }
+TUIComponent >> widgetRules [
+	^ widgetRules
+]
+
+{ #category : #accessing }
+TUIComponent >> widgetRules: aString [
+	widgetRules := aString
 ]

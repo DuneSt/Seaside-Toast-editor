@@ -1,7 +1,7 @@
 Class {
 	#name : #TUIAbstractDemo,
 	#superclass : #WAComponent,
-	#category : #'Toast-UI-Demo'
+	#category : #'Toast-Demo'
 }
 
 { #category : #accessing }
@@ -48,11 +48,11 @@ TUIAbstractDemo >> renderContentOn: html [
 TUIAbstractDemo >> renderDemoOn: html [
 	html div
 		class: 'tui-demo-snippet-demo';
-		with: [ self renderMEditorComponentOn: html ]
+		with: [ self renderEditorComponentOn: html ]
 ]
 
 { #category : #rendering }
-TUIAbstractDemo >> renderMEditorComponentOn: html [
+TUIAbstractDemo >> renderEditorComponentOn: html [
 	^ self subclassResponsibility
 ]
 

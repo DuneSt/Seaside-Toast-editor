@@ -1,14 +1,14 @@
 Class {
 	#name : #TUISimpleDemo,
 	#superclass : #TUIAbstractDemo,
-	#category : #'Toast-UI-Demo'
+	#category : #'Toast-Demo'
 }
 
 { #category : #rendering }
-TUISimpleDemo >> renderMEditorComponentOn: html [
+TUISimpleDemo >> renderEditorComponentOn: html [
 	^ html
 		div:
-			(MEditorComponent new
+			(TUIComponent new
 				text:
 					'
 Try highlighting this text.
