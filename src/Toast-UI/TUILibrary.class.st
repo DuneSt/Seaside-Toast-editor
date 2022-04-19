@@ -55,7 +55,7 @@ TUILibrary >> bindingJs [
         let options = {
             relativeContainer: editor,
             el: editor,
-            height: ''500px'',
+            height: ''100%'',
             initialValue: this.editor.innerHTML,
             initialEditType: ''wysiwyg'',
             toolbarItems: [
